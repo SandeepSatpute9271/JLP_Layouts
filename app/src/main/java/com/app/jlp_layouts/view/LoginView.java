@@ -5,9 +5,8 @@ package com.app.jlp_layouts.view;/*
 import android.content.Context;
 
 public interface LoginView extends BaseView {
-    void showData(String data);
 
-    void showErrorMessage();
+    void navigateToHome();
 
-    void performLogin(Context context);
+    void showErrorMessage(String message);
 }

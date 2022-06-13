@@ -22,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <include
-            android:id="@+id/layoutEmail"
+            android:id="@+id/layoutUsername"
             layout="@layout/input_field_username"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
             android:layout_marginTop="@dimen/margin_padding_normal"
             app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-            app:layout_constraintTop_toBottomOf="@+id/layoutEmail"/>
+            app:layout_constraintTop_toBottomOf="@+id/layoutUsername"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnLogin"
