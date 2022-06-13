@@ -5,6 +5,7 @@ package com.app.jlp_layouts.presenter;/*
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.app.jlp_layouts.R;
 import com.app.jlp_layouts.view.LoginView;
 
 public class LoginPresenter extends BasePresenter<LoginView> {
@@ -21,30 +22,28 @@ public class LoginPresenter extends BasePresenter<LoginView> {
     }
 
     public void login(String username, String password) {
-        Log.e("LoginACT", "login: "+username);
-        Log.e("LoginACT", "login: "+password);
         if (validate(username, password)) {
-            //view.showProgress();
+            view.showProgress();
             doLogin(username, password);
         }
     }
 
     public boolean validate(String username, String password) {
         if(TextUtils.isEmpty(username) && TextUtils.isEmpty(password)){
-            view.showErrorMessage("");
+            view.showErrorMessage(R.string.please_enter_user_id_and_password);
             return false;
         }if(TextUtils.isEmpty(username)){
-            view.showErrorMessage("Please enter User ID.");
+            view.showErrorMessage(R.string.please_enter_user_id);
             return false;
         }else if(TextUtils.isEmpty(password)){
-            view.showErrorMessage("Please enter password");
+            view.showErrorMessage(R.string.please_enter_password);
             return false;
-        }else if(password.length() < 5 || password.length() > 9){
-            view.showErrorMessage("Password should be 6-8 characters long");
+        }else if(password.length() < 6 || password.length() > 9){
+            view.showErrorMessage(R.string.password_should_be);
             return false;
         }else {
             view.hideProgress();
-            doLogin(username, password);
+            view.clearViews();
             return true;
         }
     }

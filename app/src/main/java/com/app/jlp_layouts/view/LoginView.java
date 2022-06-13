@@ -8,5 +8,11 @@ public interface LoginView extends BaseView {
 
     void navigateToHome();
 
-    void showErrorMessage(String message);
+    void showErrorMessage(int messageId);
+
+    void clearViews();
+
+    void showProgress();
+
+    void hideProgress();
 }

@@ -3,8 +3,4 @@ package com.app.jlp_layouts.view;/*
  */
 
 public interface BaseView {
-
-    void showProgress();
-
-    void hideProgress();
 }

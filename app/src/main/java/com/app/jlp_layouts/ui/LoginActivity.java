@@ -5,19 +5,25 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.app.jlp_layouts.R;
 import com.app.jlp_layouts.databinding.ActivityLoginBinding;
 import com.app.jlp_layouts.presenter.LoginPresenter;
 import com.app.jlp_layouts.ui.activities.BaseActivity;
+import com.app.jlp_layouts.utils.Utils;
 import com.app.jlp_layouts.view.LoginView;
+import com.google.android.material.snackbar.Snackbar;
+
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginView {
 
     private @NonNull ActivityLoginBinding binding;
     protected final String TAG = getClass().getSimpleName();
-    private ProgressDialog mDialog;
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,37 +49,49 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     }
 
     @Override
-    public void showErrorMessage(String message) {
-        if (message == null || message.isEmpty()) return;
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    public void showErrorMessage(int messageId) {
+        showToast(getResources().getString(messageId));
+    }
+
+    @Override
+    public void clearViews() {
+        binding.layoutUsername.inputUsername.setText("");
+        binding.layoutPassword.inputPassword.setText("");
     }
 
     @Override
     public void showProgress() {
-        if (mDialog != null && mDialog.isShowing()) {
-            return;
-        }
-        mDialog = new ProgressDialog(this);
-        mDialog.setMessage("Loading...");
-        mDialog.setCancelable(false);
-        mDialog.show();
+        hideProgress();
+        mProgressDialog = Utils.showLoadingDialog(this);
     }
 
     @Override
     public void hideProgress() {
-        if (mDialog != null && mDialog.isShowing()) {
-            mDialog.dismiss();
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        presenter.onDetach();
+        super.onDestroy();
     }
 
     @Override
     public void navigateToHome() {
         Intent intent = new Intent(this, ChangePasswordActivity.class);
         startActivity(intent);
-        //finish();
-
-        //  startActivity(new Intent(this,ChangePasswordActivity.class));
-        //        overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
-        //
+        finish();
     }
+
+//    private void showSnackBar(String message) {
+//        Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content),
+//                message, Snackbar.LENGTH_SHORT);
+//        View sbView = snackbar.getView();
+//        TextView textView = (TextView) sbView
+//                .findViewById(android.support.design.R.id.snackbar_text);
+//        textView.setTextColor(ContextCompat.getColor(this, R.color.white));
+//        snackbar.show();
+//    }
 }
