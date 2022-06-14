@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.app.jlp_layouts.R;
+import com.app.jlp_layouts.utils.Constants;
 import com.app.jlp_layouts.view.LoginView;
 
 public class LoginPresenter extends BasePresenter<LoginView> {
@@ -22,8 +23,8 @@ public class LoginPresenter extends BasePresenter<LoginView> {
     }
 
     public void login(String username, String password) {
+        view.showProgress();
         if (validate(username, password)) {
-            view.showProgress();
             doLogin(username, password);
         }
     }
@@ -38,7 +39,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
         }else if(TextUtils.isEmpty(password)){
             view.showErrorMessage(R.string.please_enter_password);
             return false;
-        }else if(password.length() < 6 || password.length() > 9){
+        }else if(password.length() < Constants.MIN_PASSWORD_LENGTH || password.length() > Constants.MAX_PASSWORD_LENGTH){
             view.showErrorMessage(R.string.password_should_be);
             return false;
         }else {

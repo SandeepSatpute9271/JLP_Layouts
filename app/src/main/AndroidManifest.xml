@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.app.jlp_layouts">
 
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -15,11 +18,11 @@
         android:theme="@style/Theme.JLP_Layouts"
         tools:targetApi="31">
         <activity
-            android:name=".ui.ChangePasswordActivity"
+            android:name=".ui.activities.ChangePasswordActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize"/>
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".ui.activities.LoginActivity"
             android:exported="true"
             android:label="@string/title_activity_login"
             android:theme="@style/Theme.JLP_Layouts.NoActionBar"

@@ -1,23 +1,18 @@
-package com.app.jlp_layouts.ui;
+package com.app.jlp_layouts.ui.activities;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.app.jlp_layouts.R;
 import com.app.jlp_layouts.databinding.ActivityLoginBinding;
 import com.app.jlp_layouts.presenter.LoginPresenter;
 import com.app.jlp_layouts.ui.activities.BaseActivity;
+import com.app.jlp_layouts.ui.activities.ChangePasswordActivity;
 import com.app.jlp_layouts.utils.Utils;
 import com.app.jlp_layouts.view.LoginView;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 
 public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginView {
 
@@ -61,7 +56,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @Override
     public void showProgress() {
-        hideProgress();
         mProgressDialog = Utils.showLoadingDialog(this);
     }
 
@@ -82,7 +76,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     public void navigateToHome() {
         Intent intent = new Intent(this, ChangePasswordActivity.class);
         startActivity(intent);
-        finish();
     }
 
 //    private void showSnackBar(String message) {

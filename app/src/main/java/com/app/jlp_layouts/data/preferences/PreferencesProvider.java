@@ -21,7 +21,6 @@ public class PreferencesProvider implements PreferencesHelper {
         sPreferences = context.getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE);
     }
 
-
     @Override
     public String getDeviceName() {
         return sPreferences.getString(PREF_KEY_DEVICE_NAME, null);
