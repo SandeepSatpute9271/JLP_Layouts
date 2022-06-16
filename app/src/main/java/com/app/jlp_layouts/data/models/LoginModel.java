@@ -2,29 +2,15 @@ package com.app.jlp_layouts.data.models;/*
  * Created by Sandeep(Techno Learning) on 13,June,2022
  */
 
+import com.app.jlp_layouts.presenter.LoginPresenter;
+
 public class LoginModel {
 
-    private String userName;
-    private String password;
+    private static final String TAG = LoginModel.class.getSimpleName();
+    private LoginPresenter presenter;
 
-    public LoginModel(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
+    public LoginModel(LoginPresenter presenter) {
+        this.presenter = presenter;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }
